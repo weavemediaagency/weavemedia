@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HubSpot Consulting — Weave Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #ffffff;
+  --surface: #f9fafb;
+  --border:  #e5e7eb;
+  --text:    #111827;
+  --muted:   #6b7280;
+  --accent:  #ec2726;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  height: 64px; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo { font-size: 17px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.3px; }
+.logo .w { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: color .15s; }
+.nav-links a:hover, .nav-links .active { color: var(--text); }
+.nav-sep { width: 1px; height: 16px; background: var(--border); margin: 0 6px; }
+.nav-cta { background: var(--text) !important; color: #fff !important; border-radius: 8px; font-weight: 600 !important; font-size: 14px; padding: 7px 16px !important; }
+.nav-cta:hover { opacity: .85 !important; color: #fff !important; }
+
+/* HERO */
+.hero { background: var(--bg); padding: 96px 40px 80px; border-bottom: 1px solid var(--border); position: relative; overflow: visible; }
+.hero::before { display: none; }
+.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
+}
+.hero-label::before { content: ''; width: 20px; height: 1.5px; background: var(--accent); }
+.hero h1 { font-size: 56px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); line-height: 1.08; margin-bottom: 20px; }
+.hero h1 em { color: var(--accent); font-style: normal; }
+.hero-desc { font-size: 18px; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 36px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity .15s; }
+.btn-primary:hover { opacity: .85; transform: none; box-shadow: none; }
+.btn-primary svg, .btn-ghost svg { transition: transform .15s; flex-shrink: 0; }
+.btn-primary:hover svg, .btn-ghost:hover svg { transform: translateX(2px); }
+.btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: var(--bg); color: var(--text); border: 1px solid var(--border); padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background .15s; }
+.btn-ghost:hover { background: var(--surface); transform: none; }
+
+/* INTRO BAND */
+.intro-band { background: var(--surface); border-bottom: 1px solid var(--border); padding: 32px 40px; }
+.intro-band-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+.intro-band p { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 580px; font-style: italic; }
+.intro-band-stats { display: flex; gap: 40px; flex-shrink: 0; flex-wrap: wrap; }
+.i-stat .n { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1; }
+.i-stat .l { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+/* PROBLEM */
+.problem { padding: 96px 40px; background: var(--bg); border-bottom: 1px solid var(--border); }
+.problem-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
+.section-label { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; }
+.problem-left .section-label { margin-bottom: 14px; }
+.problem-left h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-bottom: 18px; margin-top: 12px; }
+.problem-left h2 span { color: var(--accent); }
+.problem-left p { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.problem-quote { font-size: 18px; font-style: italic; color: var(--text); line-height: 1.6; padding-left: 20px; border-left: 2px solid var(--accent); }
+
+/* SERVICES */
+.services { padding: 96px 40px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.services-inner { max-width: 1100px; margin: 0 auto; }
+.services-header { margin-bottom: 48px; }
+.services-header h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-top: 12px; }
+.services-header h2 span { color: var(--accent); }
+
+.svc-block { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+.svc-block:last-child { margin-bottom: 0; }
+
+.svc-item { background: var(--bg); padding: 28px; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.svc-item.char-bg { background: var(--surface); border-color: var(--border); box-shadow: none; }
+.svc-item.dark-bg { background: var(--surface); border-color: var(--border); box-shadow: none; }
+.svc-item.orange-tint { background: var(--bg); border-color: var(--border); border-left: 3px solid var(--accent); }
+
+.svc-num { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.svc-item.char-bg .svc-num, .svc-item.dark-bg .svc-num { color: var(--accent); border-color: var(--border); }
+
+.svc-item h3 { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; margin-bottom: 10px; line-height: 1.3; }
+.svc-item.char-bg h3, .svc-item.dark-bg h3 { color: var(--text); }
+
+.svc-item > p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.svc-item.char-bg > p, .svc-item.dark-bg > p { color: var(--muted); }
+
+.svc-pricing { margin-bottom: 20px; }
+.price-tag { display: inline-block; font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.03em; }
+.price-from { font-size: 12px; color: var(--muted); font-style: italic; margin-left: 6px; }
+.svc-item.char-bg .price-from, .svc-item.dark-bg .price-from { color: var(--muted); }
+
+.svc-detail { list-style: none; display: flex; flex-direction: column; }
+.svc-detail li { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); font-family: inherit; }
+.svc-detail li:last-child { border-bottom: none; }
+.svc-item.char-bg .svc-detail li, .svc-item.dark-bg .svc-detail li { border-color: var(--border); color: var(--text); }
+.note { font-size: 12px; color: var(--muted); font-style: normal; white-space: nowrap; }
+.svc-item.char-bg .note, .svc-item.dark-bg .note { color: var(--muted); }
+
+/* AUDIT STRIP */
+.audit-strip { background: var(--bg); padding: 64px 40px; border-bottom: 1px solid var(--border); border-top: 1px solid var(--border); }
+.audit-strip-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; border: 1px solid var(--border); border-radius: 12px; padding: 40px 48px; background: var(--surface); }
+.audit-strip h3 { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; line-height: 1.2; }
+.audit-strip p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-top: 8px; max-width: 480px; }
+.audit-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--text); color: #fff; padding: 12px 24px;
+  border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none;
+  transition: opacity .15s; flex-shrink: 0;
+}
+.audit-btn:hover { opacity: .85; transform: none; }
+.audit-btn svg { transition: transform .15s; }
+.audit-btn:hover svg { transform: translateX(2px); }
+
+/* HOW WE WORK */
+.how { padding: 96px 40px; background: var(--bg); border-bottom: 1px solid var(--border); }
+.how-inner { max-width: 1100px; margin: 0 auto; }
+.how-header { margin-bottom: 48px; }
+.how-header h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-top: 12px; }
+.how-header h2 span { color: var(--accent); }
+.how-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+.how-step { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+.how-num { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.how-step h4 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: 0; }
+.how-step p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+/* NUMBERS */
+.numbers { padding: 72px 40px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.numbers-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; align-items: center; }
+.numbers-intro p { font-size: 16px; color: var(--muted); line-height: 1.7; font-family: inherit; }
+.stat .n { font-size: 48px; font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
+.stat .l { font-size: 13px; color: var(--muted); line-height: 1.5; font-family: inherit; }
+
+/* CLIENTS */
+.clients { padding: 72px 40px; background: var(--bg); border-bottom: 1px solid var(--border); }
+.clients-inner { max-width: 1100px; margin: 0 auto; }
+.clients-label { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+.clients-row { display: flex; flex-wrap: wrap; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.client-item { padding: 20px 24px; border-right: 1px solid var(--border); flex: 1; min-width: 140px; }
+.client-item:last-child { border-right: none; }
+.client-item .c-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.client-item .c-type { font-size: 12px; color: var(--muted); font-style: normal; }
+
+/* TESTIMONIALS */
+.testi { padding: 96px 40px; background: var(--bg); border-bottom: 1px solid var(--border); }
+.testi-inner { max-width: 1100px; margin: 0 auto; }
+.testi-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
+.testi-header h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+.testi-header p { font-size: 14px; color: var(--muted); font-style: italic; max-width: 280px; text-align: right; line-height: 1.6; }
+.testi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.testi-card { padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.tq { font-size: 15px; font-style: italic; color: var(--muted); line-height: 1.7; margin-bottom: 24px; font-family: inherit; }
+.ta { display: flex; align-items: center; gap: 12px; }
+.ta-av { width: 36px; height: 36px; border-radius: 50%; background: rgba(236,39,38,.08); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+.ta-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.ta-co { font-size: 12px; color: var(--muted); font-family: inherit; }
+
+/* CTA */
+.cta { padding: 96px 40px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.cta-left h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-bottom: 16px; }
+.cta-left h2 span { color: var(--accent); }
+.cta-left p { font-size: 16px; color: var(--muted); line-height: 1.7; }
+.cta-right { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.cta-main-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity .15s; }
+.cta-main-btn:hover { opacity: .85; transform: none; box-shadow: none; }
+.cta-main-btn svg { transition: transform .15s; }
+.cta-main-btn:hover svg { transform: translateX(2px); }
+.cta-note { font-size: 13px; color: var(--muted); font-style: italic; font-family: inherit; }
+.also-link { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); flex-wrap: wrap; margin-top: 4px; }
+.also-link a { font-weight: 600; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: gap .15s; }
+.also-link a:hover { gap: 7px; }
+
+/* FOOTER */
+footer { background: var(--surface); padding: 64px 40px 36px; border-top: 1px solid var(--border); }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
+.footer-brand .logo { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; display: block; text-decoration: none; }
+.footer-brand .logo .w { color: var(--accent); }
+.footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.7; font-style: normal; }
+.footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .15s; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 12px; color: var(--muted); }
+
+/* ANIMATIONS */
+.fade { opacity: 0; transform: translateY(14px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+.fade.in { opacity: 1; transform: none; }
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 0 20px; }
+  .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+  .hero { padding: 64px 20px; }
+  .intro-band { padding: 24px 20px; }
+  .intro-band-inner { flex-direction: column; gap: 24px; }
+  .problem { padding: 64px 20px; }
+  .problem-inner { grid-template-columns: 1fr; gap: 40px; }
+  .services { padding: 64px 20px; }
+  .svc-block { grid-template-columns: 1fr; }
+  .audit-strip { padding: 40px 20px; }
+  .audit-strip-inner { flex-direction: column; padding: 28px 24px; }
+  .how { padding: 64px 20px; }
+  .how-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .numbers { padding: 48px 20px; }
+  .numbers-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .numbers-intro { grid-column: 1 / -1; }
+  .clients { padding: 48px 20px; }
+  .clients-row { flex-direction: column; }
+  .client-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .client-item:last-child { border-bottom: none; }
+  .testi { padding: 64px 20px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-header p { text-align: left; max-width: none; }
+  .cta { padding: 64px 20px; }
+  .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+  footer { padding: 48px 20px 28px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 40px; }
+  .hero-actions { flex-direction: column; }
+  .how-grid { grid-template-columns: 1fr; }
+  .numbers-inner { grid-template-columns: 1fr 1fr; }
+  .intro-band-stats { gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html"><span class="w">W</span>eave Media</a>
+  <ul class="nav-links">
+    <li><a href="hubspot.html" class="active">HubSpot Services</a></li>
+    <li><a href="ecommerce.html">Ecommerce & Design</a></li>
+    <li><div class="nav-sep"></div></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="#cta" class="nav-cta">Book a Free Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">HubSpot Setup · CRM · Training · Retainer · Websites · Audit</div>
+    <h1>HubSpot Done<br><em>Right,</em> the<br>First Time.</h1>
+    <p class="hero-desc">Most HubSpot portals we audit are underbuilt, poorly adopted, or sitting unused. We set it up properly, fix what's broken, train your team, and stay on as a long-term partner if you need us.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">
+        Book a Free Call
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#services" class="btn-ghost">
+        View All Services
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+  <div class="intro-band-inner">
+    <p>"The problem isn't usually HubSpot. It's that nobody configured it around how the business actually works. We fix that — and then we make sure your team can run it without us."</p>
+    <div class="intro-band-stats">
+      <div class="i-stat"><div class="n">90%</div><div class="l">Average HubSpot adoption<br>after our training engagements</div></div>
+      <div class="i-stat"><div class="n">50+</div><div class="l">HubSpot portals<br>configured & fixed</div></div>
+      <div class="i-stat"><div class="n">3</div><div class="l">Countries — AU,<br>US & Philippines</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="problem-inner">
+    <div class="problem-left fade">
+      <div class="section-label">Why most portals fail</div>
+      <h2>HubSpot is powerful.<br><span>Misconfigured,</span><br>it's expensive noise.</h2>
+      <p>We've audited dozens of HubSpot portals. The pattern is always the same: someone set it up quickly during onboarding, the team never adopted it properly, and now it's a CRM full of bad data and missed follow-ups.</p>
+      <p>Sometimes it's a new business that wants to get it right from day one. Sometimes it's a team that's been fighting their portal for two years. Either way, the fix starts the same place — understanding your people and your process before touching a single setting.</p>
+    </div>
+    <div class="problem-right fade d2">
+      <div class="problem-quote">"Before we configure a single pipeline or build a single workflow, we sit down with your team and map out how your sales and marketing process actually works. The HubSpot we build is fitted to you — not copied from a template."</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header fade">
+      <div class="section-label">What we offer</div>
+      <h2>Six ways we help with<br><span>HubSpot.</span></h2>
+    </div>
+
+    <div class="svc-block fade">
+      <div class="svc-item">
+        <div class="svc-num">01</div>
+        <h3>Onboarding & Full Setup</h3>
+        <p>For businesses starting fresh with HubSpot. We handle the full setup — CRM, pipelines, properties, forms, email templates, integrations, and an initial training session so your team can actually use it from day one.</p>
+        <div class="svc-pricing"><span class="price-tag">From $2,500</span><span class="price-from">one-time project</span></div>
+        <ul class="svc-detail">
+          <li>CRM & Contact Setup <span class="note">Properties & segments</span></li>
+          <li>Sales Pipeline Configuration <span class="note">Built to your process</span></li>
+          <li>Email Templates & Sequences <span class="note">Ready to use</span></li>
+          <li>Integrations Setup <span class="note">Where relevant</span></li>
+          <li>Handover Training Session <span class="note">Included</span></li>
+        </ul>
+      </div>
+      <div class="svc-item char-bg">
+        <div class="svc-num">02</div>
+        <h3>Portal Audit & Fix-Up</h3>
+        <p>For businesses that already have HubSpot but know something's not right. We audit your portal, identify what's broken or missing, give you a report, and fix it. No unnecessary rebuilds — just what needs doing.</p>
+        <div class="svc-pricing"><span class="price-tag">From $1,500</span><span class="price-from">audit + fix project</span></div>
+        <ul class="svc-detail">
+          <li>Full Portal Audit Report <span class="note">Written findings</span></li>
+          <li>Data Cleanup & Deduplication <span class="note">Clean foundation</span></li>
+          <li>Pipeline & Workflow Fixes <span class="note">What's actually broken</span></li>
+          <li>Recommendations Roadmap <span class="note">What to do next</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc-block fade d1">
+      <div class="svc-item dark-bg">
+        <div class="svc-num">03</div>
+        <h3>CRM Configuration</h3>
+        <p>Detailed CRM architecture for teams with complex sales processes. Custom objects, advanced properties, deal stages, scoring models, and the reporting dashboards your leadership actually needs to see.</p>
+        <div class="svc-pricing"><span class="price-tag">From $1,800</span><span class="price-from">configuration project</span></div>
+        <ul class="svc-detail">
+          <li>Custom Objects & Properties <span class="note">Built for your model</span></li>
+          <li>Deal Stage Logic & Automation <span class="note">Process-first</span></li>
+          <li>Lead Scoring Setup <span class="note">Qualify intelligently</span></li>
+          <li>Reporting Dashboards <span class="note">For sales & leadership</span></li>
+        </ul>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">04</div>
+        <h3>Team Training</h3>
+        <p>Practical, role-specific training for your actual team — not generic HubSpot Academy content. Sales reps, marketers, and managers each get what's relevant to how they use the platform day to day.</p>
+        <div class="svc-pricing"><span class="price-tag">From $800</span><span class="price-from">per session or package</span></div>
+        <ul class="svc-detail">
+          <li>Role-Based Training Sessions <span class="note">Sales, marketing, ops</span></li>
+          <li>Recorded for Future Staff <span class="note">On request</span></li>
+          <li>Custom Training Materials <span class="note">Your portal, your process</span></li>
+          <li>Follow-Up Q&A Session <span class="note">2 weeks after</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc-block fade d2">
+      <div class="svc-item orange-tint">
+        <div class="svc-num">05</div>
+        <h3>Monthly Retainer</h3>
+        <p>Ongoing HubSpot management for teams that want a dedicated expert without hiring one. We handle updates, new builds, troubleshooting, and strategic recommendations — on a fixed monthly scope.</p>
+        <div class="svc-pricing"><span class="price-tag">From $800</span><span class="price-from">per month</span></div>
+        <ul class="svc-detail">
+          <li>Monthly Hours Allocation <span class="note">Defined in agreement</span></li>
+          <li>Workflow & Automation Builds <span class="note">Ongoing</span></li>
+          <li>Reporting & Insights <span class="note">Monthly summary</span></li>
+          <li>Priority Support <span class="note">Dedicated contact</span></li>
+        </ul>
+      </div>
+      <div class="svc-item char-bg">
+        <div class="svc-num">06</div>
+        <h3>HubSpot Websites</h3>
+        <p>Websites built on HubSpot CMS — fully integrated with your CRM, contact records, and marketing tools. Designed for performance and built for teams who need marketing to be able to manage it without developers.</p>
+        <div class="svc-pricing"><span class="price-tag">From $4,000</span><span class="price-from">website project</span></div>
+        <ul class="svc-detail">
+          <li>HubSpot CMS Build <span class="note">Fully integrated</span></li>
+          <li>CRM-Connected Forms & CTAs <span class="note">Lead capture ready</span></li>
+          <li>Editable Page Templates <span class="note">No dev needed</span></li>
+          <li>SEO Setup & Analytics <span class="note">Measurement from day one</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AUDIT STRIP -->
+<div class="audit-strip">
+  <div class="audit-strip-inner">
+    <div>
+      <h3>Not sure what's wrong<br>with your portal?</h3>
+      <p>Start with a free discovery call. We'll ask you the right questions and tell you honestly whether you need an audit, a full rebuild, training, or something simpler.</p>
+    </div>
+    <a href="#cta" class="audit-btn">
+      Book a Free Call
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- HOW WE WORK -->
+<section class="how">
+  <div class="how-inner">
+    <div class="how-header fade">
+      <div class="section-label">Our process</div>
+      <h2>Straightforward from<br>the <span>first conversation.</span></h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step fade d1">
+        <div class="how-num">01</div>
+        <h4>Free Discovery Call</h4>
+        <p>30 minutes. We listen to how your business works, ask about your current HubSpot situation, and tell you exactly what we'd recommend — regardless of whether you hire us.</p>
+      </div>
+      <div class="how-step fade d2">
+        <div class="how-num">02</div>
+        <h4>Scoped Proposal</h4>
+        <p>A written proposal with exact deliverables, timeline, and cost. No vague estimates or hourly billing surprises. You know what you're getting before you sign anything.</p>
+      </div>
+      <div class="how-step fade d3">
+        <div class="how-num">03</div>
+        <h4>We Configure & Build</h4>
+        <p>Our team gets to work inside your portal. Regular check-ins, transparent communication, and updates throughout — so you're never wondering what we're doing.</p>
+      </div>
+      <div class="how-step fade d4">
+        <div class="how-num">04</div>
+        <h4>Handover & Adoption</h4>
+        <p>Full handover with training tailored to each role. Your team can run the portal independently — and you have the option to continue with a monthly retainer if you need ongoing support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="numbers-inner">
+    <div class="numbers-intro fade">
+      <p>We've configured and fixed HubSpot portals for businesses across Australia, the United States, and Southeast Asia — from small startups doing their first CRM setup to established teams who've been fighting bad configurations for years.</p>
+    </div>
+    <div class="stat fade d1"><div class="n">90%</div><div class="l">Avg HubSpot adoption<br>post-training</div></div>
+    <div class="stat fade d2"><div class="n">50+</div><div class="l">Portals configured<br>& audited</div></div>
+    <div class="stat fade d3"><div class="n">100%</div><div class="l">Done-for-you —<br>not just advice</div></div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients">
+  <div class="clients-inner">
+    <div class="clients-label">Businesses We've Helped with HubSpot</div>
+    <div class="clients-row">
+      <div class="client-item fade d1"><div class="c-name">IDEA Lab Kids</div><div class="c-type">STEAM Education · CRM & Training · USA</div></div>
+      <div class="client-item fade d2"><div class="c-name">Pharmacy Career Coach</div><div class="c-type">Professional Services · HubSpot Setup · USA</div></div>
+      <div class="client-item fade d3"><div class="c-name">Mega Office Supplies</div><div class="c-type">B2B · Pipeline & CRM Config · AU</div></div>
+      <div class="client-item fade d1"><div class="c-name">Touch Skincare</div><div class="c-type">Ecommerce · HubSpot + Email · USA</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="testi-inner">
+    <div class="testi-header">
+      <h2>What our clients say</h2>
+      <p>We don't ask for reviews until we've done the work and earned them.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade d1">
+        <div class="tq">"Weave Media transformed our HubSpot from a chaotic mess into something our whole sales team actually uses. The difference in pipeline visibility alone has been incredible."</div>
+        <div class="ta"><div class="ta-av">S</div><div><div class="ta-name">Sarah M.</div><div class="ta-co">Head of Sales · B2B Software · AU</div></div></div>
+      </div>
+      <div class="testi-card fade d2">
+        <div class="tq">"The training wasn't generic — it was tailored to exactly what each person on our team needed. Our HubSpot adoption went from 40% to over 90% after the engagement."</div>
+        <div class="ta"><div class="ta-av">R</div><div><div class="ta-name">Rachel T.</div><div class="ta-co">Operations Manager · IDEA Lab Kids · USA</div></div></div>
+      </div>
+      <div class="testi-card fade d3">
+        <div class="tq">"We'd had HubSpot for two years and barely touched it. After the audit and fix-up, we finally understood what we had — and within a month our team actually started using it."</div>
+        <div class="ta"><div class="ta-av">D</div><div><div class="ta-name">David P.</div><div class="ta-co">Founder · Professional Services · AU</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="cta-inner">
+    <div class="cta-left fade">
+      <h2>Let's fix your<br><span>HubSpot.</span></h2>
+      <p>Book a free 30-minute call. We'll listen to where you are with HubSpot and tell you honestly what we'd recommend — and what it would cost. No pitch, no pressure.</p>
+    </div>
+    <div class="cta-right fade d2">
+      <a href="#" class="cta-main-btn">
+        Book a Free Discovery Call
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <span class="cta-note">30 minutes · Free · No commitment</span>
+      <div class="also-link">Also looking for ecommerce help? <a href="ecommerce.html">View Ecommerce Services <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="index.html"><span class="w">W</span>eave Media</a>
+        <p>HubSpot Consulting & Ecommerce Marketing. Operating across Australia, the United States, and the Philippines.</p>
+      </div>
+      <div class="footer-col">
+        <h5>HubSpot</h5>
+        <ul>
+          <li><a href="#services">Onboarding & Setup</a></li>
+          <li><a href="#services">Audit & Fix-Up</a></li>
+          <li><a href="#services">CRM Configuration</a></li>
+          <li><a href="#services">Team Training</a></li>
+          <li><a href="#services">Monthly Retainer</a></li>
+          <li><a href="#services">HubSpot Websites</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Ecommerce</h5>
+        <ul>
+          <li><a href="ecommerce.html">Email & Automation</a></li>
+          <li><a href="ecommerce.html">Meta & Google Ads</a></li>
+          <li><a href="ecommerce.html">Product Video</a></li>
+          <li><a href="ecommerce.html">Social Media</a></li>
+          <li><a href="ecommerce.html">Brand Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="#cta">Book a Call</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Weave Media. All rights reserved. · All prices in USD.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecommerce & Design — Weave Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #ffffff;
+  --surface: #f9fafb;
+  --border:  #e5e7eb;
+  --text:    #111827;
+  --muted:   #6b7280;
+  --accent:  #ec2726;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  height: 64px; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo { font-size: 17px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.3px; }
+.logo .w { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: color .15s; }
+.nav-links a:hover, .nav-links .active { color: var(--text); }
+.nav-sep { width: 1px; height: 16px; background: var(--border); margin: 0 6px; }
+.nav-cta { background: var(--text) !important; color: #fff !important; border-radius: 8px; font-weight: 600 !important; font-size: 14px; padding: 7px 16px !important; }
+.nav-cta:hover { opacity: .85 !important; color: #fff !important; }
+
+/* HERO */
+.hero { background: var(--bg); padding: 96px 40px 80px; border-bottom: 1px solid var(--border); position: relative; overflow: visible; }
+.hero::before, .hero::after { display: none; }
+.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
+}
+.hero-label::before { content: ''; width: 20px; height: 1.5px; background: var(--accent); }
+.hero h1 { font-size: 56px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); line-height: 1.08; margin-bottom: 20px; }
+.hero h1 em { color: var(--accent); font-style: normal; }
+.hero-desc { font-size: 18px; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 36px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity .15s; }
+.btn-primary:hover { opacity: .85; transform: none; box-shadow: none; }
+.btn-primary svg, .btn-ghost svg { transition: transform .15s; flex-shrink: 0; }
+.btn-primary:hover svg, .btn-ghost:hover svg { transform: translateX(2px); }
+.btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: var(--bg); color: var(--text); border: 1px solid var(--border); padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background .15s; }
+.btn-ghost:hover { background: var(--surface); transform: none; }
+
+/* INTRO BAND */
+.intro-band { background: var(--surface); border-bottom: 1px solid var(--border); padding: 32px 40px; }
+.intro-band-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+.intro-band p { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 580px; font-style: italic; }
+.intro-band-stats { display: flex; gap: 40px; flex-shrink: 0; flex-wrap: wrap; }
+.i-stat .n { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1; }
+.i-stat .l { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+/* SERVICES */
+.services { padding: 96px 40px; background: var(--bg); }
+.services-inner { max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; }
+.services-header { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: end; margin-bottom: 56px; }
+.services-header h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-top: 12px; }
+.services-header h2 span { color: var(--accent); }
+.services-header p { font-size: 16px; color: var(--muted); line-height: 1.7; }
+
+.service-block { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+.service-block:last-child { margin-bottom: 0; }
+
+.svc-item { background: var(--bg); padding: 28px; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.svc-item.navy-bg { background: var(--surface); border-color: var(--border); }
+.svc-item.char-bg { background: var(--surface); border-color: var(--border); }
+
+.svc-num { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.svc-item.navy-bg .svc-num, .svc-item.char-bg .svc-num { color: var(--accent); border-color: var(--border); }
+
+.svc-item h3 { font-size: 20px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; margin-bottom: 10px; line-height: 1.3; }
+.svc-item.navy-bg h3, .svc-item.char-bg h3 { color: var(--text); }
+
+.svc-item > p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.svc-item.navy-bg > p, .svc-item.char-bg > p { color: var(--muted); }
+
+.svc-detail { list-style: none; display: flex; flex-direction: column; }
+.svc-detail li { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); font-family: inherit; }
+.svc-detail li:last-child { border-bottom: none; }
+.svc-item.navy-bg .svc-detail li, .svc-item.char-bg .svc-detail li { border-color: var(--border); color: var(--text); }
+.note { font-size: 12px; color: var(--muted); font-style: normal; white-space: nowrap; }
+.svc-item.navy-bg .note, .svc-item.char-bg .note { color: var(--muted); }
+
+/* APPROACH */
+.approach { padding: 96px 40px; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.approach-inner { max-width: 1100px; margin: 0 auto; }
+.approach-header { margin-bottom: 48px; }
+.approach-header .section-label { color: var(--accent); }
+.approach-header h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-top: 12px; }
+.approach-header h2 span { color: var(--accent); }
+.approach-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+.ap-step { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.ap-num { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.ap-step h4 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: 0; }
+.ap-step p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+/* RESULTS */
+.results { padding: 96px 40px; background: var(--bg); border-bottom: 1px solid var(--border); }
+.results-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
+.results-left .section-label { margin-bottom: 12px; }
+.results-left h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-bottom: 16px; margin-top: 12px; }
+.results-left h2 span { color: var(--accent); }
+.results-left p { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.result-item { padding: 24px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 72px 1fr; gap: 20px; align-items: start; }
+.result-item:last-child { border-bottom: none; }
+.result-n { font-size: 32px; font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1; padding-top: 4px; }
+.result-text h5 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.result-text p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 0; }
+
+/* CLIENTS */
+.clients { padding: 72px 40px; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.clients-inner { max-width: 1100px; margin: 0 auto; }
+.clients-label { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+.clients-row { display: flex; flex-wrap: wrap; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg); }
+.client-item { padding: 20px 24px; border-right: 1px solid var(--border); flex: 1; min-width: 140px; }
+.client-item:last-child { border-right: none; }
+.client-item .c-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.client-item .c-type { font-size: 12px; color: var(--muted); font-style: normal; }
+
+/* TESTIMONIALS */
+.testi { padding: 96px 40px; background: var(--bg); border-bottom: 1px solid var(--border); }
+.testi-inner { max-width: 1100px; margin: 0 auto; }
+.testi-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
+.testi-header h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+.testi-header p { font-size: 14px; color: var(--muted); font-style: italic; max-width: 280px; text-align: right; line-height: 1.6; }
+.testi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.testi-card { padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.tq { font-size: 15px; font-style: italic; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+.ta { display: flex; align-items: center; gap: 12px; }
+.ta-av { width: 36px; height: 36px; border-radius: 50%; background: rgba(236,39,38,.08); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+.ta-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.ta-co { font-size: 12px; color: var(--muted); }
+
+/* CTA */
+.cta { padding: 96px 40px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.cta-left h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-bottom: 16px; }
+.cta-left h2 span { color: var(--accent); }
+.cta-left p { font-size: 16px; color: var(--muted); line-height: 1.7; }
+.cta-right { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.cta-main-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity .15s; }
+.cta-main-btn:hover { opacity: .85; transform: none; box-shadow: none; }
+.cta-main-btn svg { transition: transform .15s; }
+.cta-main-btn:hover svg { transform: translateX(2px); }
+.cta-note { font-size: 13px; color: var(--muted); font-style: italic; }
+.also-link { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); flex-wrap: wrap; margin-top: 4px; }
+.also-link a { font-weight: 600; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: gap .15s; }
+.also-link a:hover { gap: 7px; }
+
+/* FOOTER */
+footer { background: var(--surface); padding: 64px 40px 36px; border-top: 1px solid var(--border); }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
+.footer-brand .logo { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; display: block; text-decoration: none; }
+.footer-brand .logo .w { color: var(--accent); }
+.footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.7; font-style: normal; }
+.footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .15s; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 12px; color: var(--muted); }
+
+/* ANIMATIONS */
+.fade { opacity: 0; transform: translateY(14px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+.fade.in { opacity: 1; transform: none; }
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 0 20px; }
+  .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+  .hero { padding: 64px 20px; }
+  .intro-band { padding: 24px 20px; }
+  .intro-band-inner { flex-direction: column; gap: 24px; }
+  .services { padding: 64px 20px; }
+  .services-header { grid-template-columns: 1fr; gap: 20px; }
+  .service-block { grid-template-columns: 1fr; }
+  .approach { padding: 64px 20px; }
+  .approach-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .results { padding: 64px 20px; }
+  .results-inner { grid-template-columns: 1fr; gap: 48px; }
+  .clients { padding: 48px 20px; }
+  .clients-row { flex-direction: column; }
+  .client-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .client-item:last-child { border-bottom: none; }
+  .testi { padding: 64px 20px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-header p { text-align: left; max-width: none; }
+  .cta { padding: 64px 20px; }
+  .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+  footer { padding: 48px 20px 28px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 40px; }
+  .hero-actions { flex-direction: column; }
+  .approach-grid { grid-template-columns: 1fr; }
+  .intro-band-stats { gap: 24px; }
+  .result-item { grid-template-columns: 60px 1fr; gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html"><span class="w">W</span>eave Media</a>
+  <ul class="nav-links">
+    <li><a href="hubspot.html">HubSpot Services</a></li>
+    <li><a href="ecommerce.html" class="active">Ecommerce & Design</a></li>
+    <li><div class="nav-sep"></div></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="#cta" class="nav-cta">Book a Free Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Ecommerce Marketing · Paid Ads · Email · Creative · Brand Design</div>
+    <h1>You've Built<br>the Product.<br><em>Now Sell It.</em></h1>
+    <p class="hero-desc">Full-service ecommerce marketing for brands that are ready to grow. Email automations, paid ads, product video, social content — handled by one team that knows how they work together.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">
+        Start a Conversation
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#services" class="btn-ghost">
+        See Our Services
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+  <div class="intro-band-inner">
+    <p>"Most ecommerce brands are running three different agencies and wondering why nothing feels coherent. We put email, ads, content, and creative under one roof so your marketing tells a single story."</p>
+    <div class="intro-band-stats">
+      <div class="i-stat"><div class="n">$18K</div><div class="l">Recovered in month 1<br>for Touch Skincare</div></div>
+      <div class="i-stat"><div class="n">3×</div><div class="l">Average ROAS<br>on Meta campaigns</div></div>
+      <div class="i-stat"><div class="n">50+</div><div class="l">Ecommerce brands<br>worked with</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header fade">
+      <div>
+        <div class="section-label">What we do</div>
+        <h2>Six Services.<br>One <span>Cohesive</span> Strategy.</h2>
+      </div>
+      <p>Each service is built to work on its own or alongside the others. Most clients start with one or two and expand from there — we don't push packages you don't need.</p>
+    </div>
+
+    <div class="service-block fade">
+      <div class="svc-item">
+        <div class="svc-num">01</div>
+        <h3>Email Marketing & Automation</h3>
+        <p>Klaviyo and Mailchimp setup, sequence design, segmentation, and ongoing campaign management. Welcome series, abandoned cart, post-purchase, win-back — built to convert at every touchpoint.</p>
+        <ul class="svc-detail">
+          <li>Welcome & Abandon Cart Flows <span class="note">Core automations</span></li>
+          <li>Post-Purchase & Win-Back Sequences <span class="note">Lifetime value</span></li>
+          <li>Segmentation & List Strategy <span class="note">Deliverability first</span></li>
+          <li>Monthly Campaign Management <span class="note">Ongoing</span></li>
+        </ul>
+      </div>
+      <div class="svc-item navy-bg">
+        <div class="svc-num">02</div>
+        <h3>Meta & Google Ads</h3>
+        <p>Paid social and search campaigns managed for return, not just reach. We handle creative strategy, audience targeting, testing, and weekly optimisation — so your budget works harder over time.</p>
+        <ul class="svc-detail">
+          <li>Facebook & Instagram Ads <span class="note">Meta Ads Manager</span></li>
+          <li>Google Shopping & Search <span class="note">Intent-led buying</span></li>
+          <li>Ad Creative & Copy <span class="note">We produce it</span></li>
+          <li>Weekly Reporting & Optimisation <span class="note">Ongoing</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-block fade d1">
+      <div class="svc-item char-bg">
+        <div class="svc-num">03</div>
+        <h3>Product Video & Creative</h3>
+        <p>Product demo videos, UGC-style content, reels, and ad-ready creative assets. We script, direct, and edit — so you get video that drives clicks, not just looks good on a portfolio.</p>
+        <ul class="svc-detail">
+          <li>Product Demo & Explainer Video <span class="note">Conversion-led</span></li>
+          <li>UGC-Style Content Creation <span class="note">Ad-native feel</span></li>
+          <li>Reels & Short-Form Social <span class="note">Multi-platform</span></li>
+          <li>Ad Creative Packages <span class="note">Ready to launch</span></li>
+        </ul>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">04</div>
+        <h3>Social Media Management</h3>
+        <p>Consistent, brand-right content across Instagram, Facebook, and TikTok. Strategy, content creation, scheduling, and community management — you stay focused on the business.</p>
+        <ul class="svc-detail">
+          <li>Content Strategy & Calendar <span class="note">Monthly planning</span></li>
+          <li>Graphic Design & Copywriting <span class="note">On-brand always</span></li>
+          <li>Scheduling & Publishing <span class="note">We handle it</span></li>
+          <li>Community Management <span class="note">DMs & comments</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="service-block fade d2">
+      <div class="svc-item">
+        <div class="svc-num">05</div>
+        <h3>Shopify & Amazon Strategy</h3>
+        <p>Platform setup, listing optimisation, conversion rate improvements, and growth strategy for Shopify and Amazon sellers. We understand both platforms and how to move product on each.</p>
+        <ul class="svc-detail">
+          <li>Shopify Store Setup & CRO <span class="note">Conversion-first</span></li>
+          <li>Amazon Listing Optimisation <span class="note">Search visibility</span></li>
+          <li>A+ Content & Brand Store <span class="note">Amazon Brand</span></li>
+          <li>Platform Growth Strategy <span class="note">Ongoing roadmap</span></li>
+        </ul>
+      </div>
+      <div class="svc-item navy-bg">
+        <div class="svc-num">06</div>
+        <h3>Brand & Graphic Design</h3>
+        <p>Logo, identity, packaging, and brand system design. Whether you're launching a new product line or refreshing a brand that's outgrown itself, we build visuals that hold up everywhere they appear.</p>
+        <ul class="svc-detail">
+          <li>Logo & Brand Identity <span class="note">Full system</span></li>
+          <li>Packaging & Label Design <span class="note">Print-ready</span></li>
+          <li>Brand Guidelines Document <span class="note">The rulebook</span></li>
+          <li>Social & Digital Templates <span class="note">Ongoing use</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach">
+  <div class="approach-inner">
+    <div class="approach-header fade">
+      <div class="section-label">Our approach</div>
+      <h2>Marketing that earns<br>its place in the <span>budget.</span></h2>
+    </div>
+    <div class="approach-grid">
+      <div class="ap-step fade d1">
+        <div class="ap-num">01</div>
+        <h4>Understand the Brand</h4>
+        <p>We spend time learning your product, your customer, and how your business actually works before recommending anything. Most problems come from skipping this step.</p>
+      </div>
+      <div class="ap-step fade d2">
+        <div class="ap-num">02</div>
+        <h4>Build the Foundation</h4>
+        <p>Automations, tracking, creative assets — we get the infrastructure right before scaling spend. Bad foundations cost more to fix later than they do to get right early.</p>
+      </div>
+      <div class="ap-step fade d3">
+        <div class="ap-num">03</div>
+        <h4>Test & Optimise</h4>
+        <p>Structured tests across ads, emails, and content. Not gut feel — actual data. What works gets scaled. What doesn't gets replaced. No wasted budget on repeat mistakes.</p>
+      </div>
+      <div class="ap-step fade d4">
+        <div class="ap-num">04</div>
+        <h4>Report Honestly</h4>
+        <p>Monthly reporting that tells you what happened and why. If something underperformed, we'll say so and show you what we're changing. No vanity metrics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results">
+  <div class="results-inner">
+    <div class="results-left fade">
+      <div class="section-label">What it looks like in practice</div>
+      <h2>Results We've<br>Actually <span>Delivered.</span></h2>
+      <p>These aren't projections or industry benchmarks. They're real outcomes from real clients. We don't round up, and we don't take credit for things we didn't do.</p>
+      <p>Every business is different — your results depend on your product, market, and starting point. But these give you a sense of what good execution looks like.</p>
+    </div>
+    <div class="results-right fade d2">
+      <div class="result-item">
+        <div class="result-n">$18K</div>
+        <div class="result-text">
+          <h5>First-Month Revenue Recovery — Touch Skincare</h5>
+          <p>Abandoned cart flow went live and recovered $18,000 in lost revenue within the first 30 days. Before any ad spend.</p>
+        </div>
+      </div>
+      <div class="result-item">
+        <div class="result-n">3×</div>
+        <div class="result-text">
+          <h5>Return on Ad Spend — Dirobi Supplements</h5>
+          <p>Meta campaigns restructured with ad creative produced in-house. ROAS went from under 1 to over 3 within 90 days.</p>
+        </div>
+      </div>
+      <div class="result-item">
+        <div class="result-n">40%</div>
+        <div class="result-text">
+          <h5>Email Revenue Share Increase — Mega Office Supplies</h5>
+          <p>Email went from 8% to 48% of total revenue after full flow buildout and segmentation strategy.</p>
+        </div>
+      </div>
+      <div class="result-item">
+        <div class="result-n">2.4×</div>
+        <div class="result-text">
+          <h5>Organic Reach Growth — IDEA Lab Kids</h5>
+          <p>Consistent content strategy drove a 2.4× increase in organic reach over six months without increasing social ad spend.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients">
+  <div class="clients-inner">
+    <div class="clients-label">Ecommerce Brands We've Worked With</div>
+    <div class="clients-row">
+      <div class="client-item fade d1"><div class="c-name">Touch Skincare</div><div class="c-type">Beauty · E-commerce · USA</div></div>
+      <div class="client-item fade d2"><div class="c-name">Dirobi</div><div class="c-type">Health Supplements · USA</div></div>
+      <div class="client-item fade d3"><div class="c-name">Mega Office Supplies</div><div class="c-type">B2B Office · E-commerce · AU</div></div>
+      <div class="client-item fade d1"><div class="c-name">IDEA Lab Kids</div><div class="c-type">STEAM Education · USA</div></div>
+      <div class="client-item fade d2"><div class="c-name">DymoOnline</div><div class="c-type">Niche E-commerce · AU</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="testi-inner">
+    <div class="testi-header">
+      <h2>What our clients say</h2>
+      <p>We don't chase reviews. We chase outcomes that make clients want to write them.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade d1">
+        <div class="tq">"Our abandoned cart flow went live and within the first month recovered $18,000 in revenue. That's just one automation. The ROI from working with Weave Media has been extraordinary."</div>
+        <div class="ta"><div class="ta-av">J</div><div><div class="ta-name">James K.</div><div class="ta-co">Founder · Touch Skincare · USA</div></div></div>
+      </div>
+      <div class="testi-card fade d2">
+        <div class="tq">"We were spending on Meta with nothing to show for it. They restructured our campaigns, redid our creative, and within three months we had a ROAS we could actually build a business on."</div>
+        <div class="ta"><div class="ta-av">M</div><div><div class="ta-name">Mike D.</div><div class="ta-co">Founder · Dirobi · USA</div></div></div>
+      </div>
+      <div class="testi-card fade d3">
+        <div class="tq">"Email used to be an afterthought. Now it's our most reliable channel. The flows they built are still generating revenue two years later with almost no maintenance from our side."</div>
+        <div class="ta"><div class="ta-av">A</div><div><div class="ta-name">Alex R.</div><div class="ta-co">Head of Marketing · Mega Office Supplies · AU</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="cta-inner">
+    <div class="cta-left fade">
+      <h2>Ready to grow<br>your <span>store?</span></h2>
+      <p>Book a free 30-minute call. Tell us where your brand is and where you want it to go — we'll tell you honestly what we'd do and what it would cost. No sales script, no pressure.</p>
+    </div>
+    <div class="cta-right fade d2">
+      <a href="#" class="cta-main-btn">
+        Book a Free Discovery Call
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <span class="cta-note">30 minutes · Free · No commitment</span>
+      <div class="also-link">Also need HubSpot help? <a href="hubspot.html">View HubSpot Services <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="index.html"><span class="w">W</span>eave Media</a>
+        <p>HubSpot Consulting & Ecommerce Marketing. Operating across Australia, the United States, and the Philippines.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Ecommerce</h5>
+        <ul>
+          <li><a href="#services">Email & Automation</a></li>
+          <li><a href="#services">Meta & Google Ads</a></li>
+          <li><a href="#services">Product Video</a></li>
+          <li><a href="#services">Social Media</a></li>
+          <li><a href="#services">Shopify & Amazon</a></li>
+          <li><a href="#services">Brand Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>HubSpot</h5>
+        <ul>
+          <li><a href="hubspot.html">Onboarding & Setup</a></li>
+          <li><a href="hubspot.html">Audit & Fix-Up</a></li>
+          <li><a href="hubspot.html">CRM Configuration</a></li>
+          <li><a href="hubspot.html">Team Training</a></li>
+          <li><a href="hubspot.html">Monthly Retainer</a></li>
+          <li><a href="hubspot.html">HubSpot Websites</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="#cta">Book a Call</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Weave Media. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

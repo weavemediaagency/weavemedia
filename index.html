@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weave Media — HubSpot Consulting & Ecommerce Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #ffffff;
+  --surface: #f9fafb;
+  --border:  #e5e7eb;
+  --text:    #111827;
+  --muted:   #6b7280;
+  --accent:  #ec2726;
+  /* legacy aliases used in inline styles */
+  --stone-2: #6b7280;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  height: 64px; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo { font-size: 17px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.3px; }
+.logo .w { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: color .15s; }
+.nav-links a:hover, .nav-links .active { color: var(--text); }
+.nav-sep { width: 1px; height: 16px; background: var(--border); margin: 0 6px; }
+.nav-cta { background: var(--text) !important; color: #fff !important; border-radius: 8px; font-weight: 600 !important; font-size: 14px; padding: 7px 16px !important; }
+.nav-cta:hover { opacity: .85 !important; color: #fff !important; }
+
+/* HERO */
+.hero { background: var(--bg); padding: 96px 40px 80px; border-bottom: 1px solid var(--border); position: relative; }
+.hero::before { display: none; }
+.hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
+}
+.hero-label::before { content: ''; width: 20px; height: 1.5px; background: var(--accent); }
+.hero h1 { font-size: 56px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); line-height: 1.08; margin-bottom: 20px; }
+.hero h1 em { color: var(--accent); font-style: normal; }
+.hero-desc { font-size: 18px; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 36px; }
+.hero-paths { display: flex; gap: 12px; flex-wrap: wrap; }
+.path-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all .15s; }
+.path-btn svg { transition: transform .15s; flex-shrink: 0; }
+.path-btn:hover svg { transform: translateX(2px); }
+.path-btn.primary { background: var(--text); color: #fff; }
+.path-btn.primary:hover { opacity: .85; transform: none; box-shadow: none; }
+.path-btn.ghost { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+.path-btn.ghost:hover { background: var(--surface); transform: none; }
+
+/* INTRO STRIP */
+.intro-strip { background: var(--surface); border-bottom: 1px solid var(--border); padding: 32px 40px; }
+.intro-strip-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+.intro-strip p { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 580px; font-style: italic; }
+.intro-strip-clients { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; flex-shrink: 0; }
+.intro-strip-clients span { font-size: 12px; font-weight: 600; color: var(--muted); }
+.client-names { display: flex; gap: 8px; flex-wrap: wrap; }
+.client-name-tag { font-size: 12px; color: var(--muted); padding: 4px 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; white-space: nowrap; letter-spacing: 0; }
+
+/* DIVISIONS */
+.divisions { padding: 96px 40px; background: var(--bg); }
+.divisions-inner { max-width: 1100px; margin: 0 auto; }
+.div-label { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 36px; }
+.div-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; border: none; border-radius: 0; overflow: visible; }
+.div-panel { padding: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.06); text-decoration: none; display: block; transition: box-shadow .2s; }
+.div-panel:first-child { background: var(--surface); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); filter: none; }
+.div-panel:last-child { background: var(--surface); }
+.div-panel:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+.div-panel-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: inline-block; padding: 0; border-bottom: none; }
+.div-panel:first-child .div-panel-tag, .div-panel:last-child .div-panel-tag { color: var(--accent); border-bottom: none; }
+.div-panel h2 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 10px; }
+.div-panel-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; max-width: none; }
+.div-services { list-style: none; display: flex; flex-direction: column; margin-bottom: 24px; }
+.div-services li { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text); transition: none; font-family: inherit; }
+.div-services li:last-child { border-bottom: none; }
+.div-services li .price { font-size: 12px; color: var(--muted); font-style: normal; white-space: nowrap; }
+.div-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 8px; text-decoration: none; transition: all .15s; letter-spacing: 0; }
+.div-panel:first-child .div-cta { background: var(--text); color: #fff; }
+.div-panel:first-child .div-cta:hover { opacity: .85; }
+.div-panel:last-child .div-cta { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+.div-panel:last-child .div-cta:hover { background: var(--surface); }
+.div-cta svg { transition: transform .15s; }
+.div-cta:hover svg { transform: translateX(2px); }
+
+/* ABOUT */
+.about { padding: 96px 40px; background: var(--bg); border-top: 1px solid var(--border); }
+.about-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
+.about-left .section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.about-left h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-bottom: 18px; }
+.about-left h2 span { color: var(--accent); }
+.about-left p { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; font-family: inherit; }
+.about-quote { font-size: 18px; font-style: italic; color: var(--text); line-height: 1.6; margin-bottom: 32px; padding-left: 20px; border-left: 2px solid var(--accent); font-family: inherit; }
+.weave-list { list-style: none; }
+.weave-item { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+.weave-item:last-child { border-bottom: none; }
+.weave-letter { font-size: 17px; font-weight: 700; color: var(--accent); }
+.weave-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.weave-desc { font-size: 13px; color: var(--muted); line-height: 1.6; font-family: inherit; }
+
+/* CLIENTS */
+.clients { padding: 72px 40px; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.clients-inner { max-width: 1100px; margin: 0 auto; }
+.clients-label { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+.clients-row { display: flex; flex-wrap: wrap; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg); }
+.client-item { padding: 20px 24px; border-right: 1px solid var(--border); flex: 1; min-width: 140px; }
+.client-item:last-child { border-right: none; }
+.client-item .c-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.client-item .c-type { font-size: 12px; color: var(--muted); font-style: normal; font-family: inherit; }
+
+/* NUMBERS */
+.numbers { padding: 72px 40px; background: var(--bg); border-bottom: 1px solid var(--border); }
+.numbers-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; align-items: center; }
+.numbers-intro p { font-size: 16px; color: var(--muted); line-height: 1.7; font-family: inherit; }
+.stat .n { font-size: 48px; font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
+.stat .l { font-size: 13px; color: var(--muted); line-height: 1.5; font-family: inherit; }
+
+/* HOW WE WORK */
+.how { padding: 96px 40px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.how-inner { max-width: 1100px; margin: 0 auto; }
+.how-header { margin-bottom: 48px; }
+.how-header .section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.how-header h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; }
+.how-header h2 span { color: var(--accent); }
+.how-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+.how-step { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 28px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.how-num { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.how-step h4 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: 0; }
+.how-step p { font-size: 14px; color: var(--muted); line-height: 1.7; font-family: inherit; }
+
+/* TESTIMONIALS */
+.testi { padding: 96px 40px; background: var(--bg); border-bottom: 1px solid var(--border); }
+.testi-inner { max-width: 1100px; margin: 0 auto; }
+.testi-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
+.testi-header h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+.testi-header p { font-size: 14px; color: var(--muted); font-style: italic; max-width: 280px; text-align: right; line-height: 1.6; font-family: inherit; }
+.testi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.testi-card { padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.tq { font-size: 15px; font-style: italic; color: var(--muted); line-height: 1.7; margin-bottom: 24px; font-family: inherit; }
+.ta { display: flex; align-items: center; gap: 12px; }
+.ta-av { width: 36px; height: 36px; border-radius: 50%; background: rgba(236,39,38,.08); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+.ta-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.ta-co { font-size: 12px; color: var(--muted); font-family: inherit; }
+
+/* CTA */
+.cta { padding: 96px 40px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.cta-left h2 { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); line-height: 1.15; margin-bottom: 16px; }
+.cta-left h2 span { color: var(--accent); }
+.cta-left p { font-size: 16px; color: var(--muted); line-height: 1.7; font-family: inherit; }
+.cta-right { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.cta-main-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity .15s; letter-spacing: 0; }
+.cta-main-btn:hover { opacity: .85; transform: none; box-shadow: none; }
+.cta-main-btn svg { transition: transform .15s; }
+.cta-main-btn:hover svg { transform: translateX(2px); }
+.cta-note { font-size: 13px; color: var(--muted); font-style: italic; font-family: inherit; }
+.cta-two-paths { display: flex; gap: 14px; flex-wrap: wrap; }
+.cta-path-link { font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: gap .15s; }
+.cta-path-link:hover { gap: 8px; }
+
+/* FOOTER */
+footer { background: var(--surface); padding: 64px 40px 36px; border-top: 1px solid var(--border); }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
+.footer-brand .logo { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; display: block; text-decoration: none; }
+.footer-brand .logo .w { color: var(--accent); }
+.footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.7; font-style: normal; font-family: inherit; }
+.footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .15s; font-family: inherit; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 12px; color: var(--muted); font-family: inherit; }
+
+/* ANIMATIONS */
+.fade { opacity: 0; transform: translateY(14px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+.fade.in { opacity: 1; transform: none; }
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}.d4{transition-delay:.24s}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 0 20px; }
+  .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+  .hero { padding: 64px 20px; }
+  .intro-strip { padding: 24px 20px; }
+  .intro-strip-inner { flex-direction: column; gap: 16px; }
+  .divisions { padding: 64px 20px; }
+  .div-grid { grid-template-columns: 1fr; }
+  .about { padding: 64px 20px; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .clients { padding: 48px 20px; }
+  .clients-row { flex-direction: column; }
+  .client-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .client-item:last-child { border-bottom: none; }
+  .numbers { padding: 48px 20px; }
+  .numbers-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .numbers-intro { grid-column: 1 / -1; }
+  .how { padding: 64px 20px; }
+  .how-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .testi { padding: 64px 20px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-header p { text-align: left; max-width: none; }
+  .cta { padding: 64px 20px; }
+  .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+  footer { padding: 48px 20px 28px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 40px; }
+  .hero-paths { flex-direction: column; }
+  .path-btn { justify-content: center; }
+  .how-grid { grid-template-columns: 1fr; }
+  .numbers-inner { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html"><span class="w">W</span>eave Media</a>
+  <ul class="nav-links">
+    <li><a href="hubspot.html">HubSpot Services</a></li>
+    <li><a href="ecommerce.html">Ecommerce & Design</a></li>
+    <li><div class="nav-sep"></div></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#cta" class="nav-cta">Book a Free Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">HubSpot Consulting · Ecommerce & Design · Philippines / AU / US</div>
+    <h1>One Agency.<br><em>Two Specialisms.</em></h1>
+    <p class="hero-desc">We help businesses get HubSpot working properly, and help ecommerce brands grow their revenue. Two focused practices — one accountable team.</p>
+    <div class="hero-paths">
+      <a href="hubspot.html" class="path-btn primary">
+        HubSpot Services
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="ecommerce.html" class="path-btn ghost">
+        Ecommerce & Design
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <div class="intro-strip-inner">
+    <p>"Before we configure a single setting or launch a single ad, we sit with your team and understand how your business actually works. The solutions we build are fitted to you — not copied from a template."</p>
+    <div class="intro-strip-clients">
+      <span>Brands we've worked with</span>
+      <div class="client-names">
+        <span class="client-name-tag">Touch Skincare</span>
+        <span class="client-name-tag">Dirobi</span>
+        <span class="client-name-tag">IDEA Lab Kids</span>
+        <span class="client-name-tag">Mega Office Supplies</span>
+        <span class="client-name-tag">DymoOnline</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIVISIONS -->
+<section class="divisions">
+  <div class="divisions-inner">
+    <div class="div-label">What we do</div>
+    <div class="div-grid">
+
+      <div class="div-panel fade" onclick="window.location='hubspot.html'" style="cursor:pointer">
+        <div class="div-panel-tag">HubSpot Consulting</div>
+        <h2>HubSpot Done Right,<br>The First Time.</h2>
+        <p class="div-panel-desc">Most portals we audit are underbuilt or never adopted. We set it up properly, fix what's broken, train your team, and stay on as a partner if you need us.</p>
+        <ul class="div-services">
+          <li>Onboarding &amp; Setup <span class="price">from $2,500</span></li>
+          <li>Portal Audit &amp; Fix-Up <span class="price">from $1,500</span></li>
+          <li>CRM Configuration <span class="price">from $1,800</span></li>
+          <li>Team Training <span class="price">from $800</span></li>
+          <li>Monthly Retainer <span class="price">from $800/mo</span></li>
+          <li>HubSpot Websites <span class="price">from $4,000</span></li>
+        </ul>
+        <a href="hubspot.html" class="div-cta">
+          View HubSpot Services
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="div-panel fade d2" onclick="window.location='ecommerce.html'" style="cursor:pointer">
+        <div class="div-panel-tag">Ecommerce & Design</div>
+        <h2>You've Built the Product.<br>Now Let's Sell It.</h2>
+        <p class="div-panel-desc">Full-service ecommerce marketing for small and growing brands. Email automations, paid ads, social content, video — all under one roof. No juggling agencies.</p>
+        <ul class="div-services">
+          <li>Email Marketing &amp; Automation</li>
+          <li>Meta &amp; Google Ads</li>
+          <li>Product Video &amp; Creative</li>
+          <li>Social Media Management</li>
+          <li>Shopify &amp; Amazon Strategy</li>
+          <li>Brand &amp; Graphic Design</li>
+        </ul>
+        <a href="ecommerce.html" class="div-cta">
+          View Ecommerce Services
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left fade">
+      <div class="section-label">Who We Are</div>
+      <h2>Two Practices.<br><span>One Standard.</span></h2>
+      <p>Weave Media isn't trying to do everything. We do two things — HubSpot consulting and ecommerce marketing — and we've built everything around doing them properly.</p>
+      <p>We work across Australia, the United States, and the Philippines, with a team that's genuinely invested in your outcomes. Not because it's good marketing to say so, but because our business only grows when yours does.</p>
+    </div>
+    <div class="about-right fade d2">
+      <div class="about-quote">"Every great HubSpot implementation — or every successful ecommerce campaign — is built on the same thing: understanding people before you do anything else."</div>
+      <ul class="weave-list">
+        <li class="weave-item">
+          <div class="weave-letter">W</div>
+          <div class="weave-text"><div class="weave-title">Win Together — People First</div><div class="weave-desc">Your growth is our growth. We build solutions around the people who use them.</div></div>
+        </li>
+        <li class="weave-item">
+          <div class="weave-letter">E</div>
+          <div class="weave-text"><div class="weave-title">Enlighten — Educate & Empower</div><div class="weave-desc">We leave every client more capable than when we found them.</div></div>
+        </li>
+        <li class="weave-item">
+          <div class="weave-letter">A</div>
+          <div class="weave-text"><div class="weave-title">Answer — Always Accountable</div><div class="weave-desc">We own our outcomes. No excuses. We follow through on every promise.</div></div>
+        </li>
+        <li class="weave-item">
+          <div class="weave-letter">V</div>
+          <div class="weave-text"><div class="weave-title">Vigilant — Value in Every Detail</div><div class="weave-desc">We sweat the small stuff so the big picture is always right.</div></div>
+        </li>
+        <li class="weave-item">
+          <div class="weave-letter">E</div>
+          <div class="weave-text"><div class="weave-title">Ever-Grow — Evolve Always</div><div class="weave-desc">We're forever students. Always learning, always improving.</div></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients">
+  <div class="clients-inner">
+    <div class="clients-label">Brands We've Worked With</div>
+    <div class="clients-row">
+      <div class="client-item fade d1"><div class="c-name">Touch Skincare</div><div class="c-type">Beauty · E-commerce · USA</div></div>
+      <div class="client-item fade d2"><div class="c-name">Mega Office Supplies</div><div class="c-type">B2B Office · E-commerce · AU</div></div>
+      <div class="client-item fade d3"><div class="c-name">Dirobi</div><div class="c-type">Health Supplements · USA</div></div>
+      <div class="client-item fade d1"><div class="c-name">IDEA Lab Kids</div><div class="c-type">STEAM Education · USA</div></div>
+      <div class="client-item fade d2"><div class="c-name">Pharmacy Career Coach</div><div class="c-type">Professional Services · USA</div></div>
+      <div class="client-item fade d3"><div class="c-name">DymoOnline</div><div class="c-type">Niche E-commerce · AU</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="numbers-inner">
+    <div class="numbers-intro fade">
+      <p>We've worked with over 50 businesses across Australia, the United States, and Southeast Asia — in HubSpot consulting, ecommerce growth, and everything in between. The numbers are real, not rounded up for the landing page.</p>
+    </div>
+    <div class="stat fade d1"><div class="n">50+</div><div class="l">Businesses across both practices</div></div>
+    <div class="stat fade d2"><div class="n">3</div><div class="l">Countries — AU, US &amp; Philippines</div></div>
+    <div class="stat fade d3"><div class="n">100%</div><div class="l">Done for you — not coaching calls</div></div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="how">
+  <div class="how-inner">
+    <div class="how-header fade">
+      <div class="section-label">How we work</div>
+      <h2>Straightforward from<br><span>the first conversation.</span></h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step fade d1">
+        <div class="how-num">01</div>
+        <h4>Free Discovery Call</h4>
+        <p>30 minutes. We listen, ask the right questions, and tell you exactly what we'd recommend — regardless of whether you hire us.</p>
+      </div>
+      <div class="how-step fade d2">
+        <div class="how-num">02</div>
+        <h4>Scoped Proposal</h4>
+        <p>A written proposal with exact deliverables, timeline, and cost. No vague estimates. You know what you're getting before you sign anything.</p>
+      </div>
+      <div class="how-step fade d3">
+        <div class="how-num">03</div>
+        <h4>We Build & Execute</h4>
+        <p>Our team gets to work. Regular updates, transparent communication, and real progress throughout the engagement.</p>
+      </div>
+      <div class="how-step fade d4">
+        <div class="how-num">04</div>
+        <h4>Handover & Growth</h4>
+        <p>Full handover with training. Your team runs independently, and you have the option to continue growing with us on a retainer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="testi-inner">
+    <div class="testi-header">
+      <h2>What our clients say</h2>
+      <p>We don't ask for reviews until we've done the work and earned them.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade d1">
+        <div class="tq">"Weave Media transformed our HubSpot from a chaotic mess into something our whole sales team actually uses. The difference in pipeline visibility alone has been incredible."</div>
+        <div class="ta"><div class="ta-av">S</div><div><div class="ta-name">Sarah M.</div><div class="ta-co">Head of Sales · B2B Software · AU</div></div></div>
+      </div>
+      <div class="testi-card fade d2">
+        <div class="tq">"Our abandoned cart flow went live and within the first month recovered $18,000 in revenue. That's just one automation. The ROI from working with Weave Media has been extraordinary."</div>
+        <div class="ta"><div class="ta-av">J</div><div><div class="ta-name">James K.</div><div class="ta-co">Founder · Touch Skincare · USA</div></div></div>
+      </div>
+      <div class="testi-card fade d3">
+        <div class="tq">"The training wasn't generic — it was tailored to exactly what each person on our team needed. Our HubSpot adoption went from 40% to over 90% after the engagement."</div>
+        <div class="ta"><div class="ta-av">R</div><div><div class="ta-name">Rachel T.</div><div class="ta-co">Operations Manager · IDEA Lab Kids · USA</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="cta-inner">
+    <div class="cta-left fade">
+      <h2>Not sure<br>where to <span>start?</span></h2>
+      <p>Book a free 30-minute call. We'll listen to your situation and tell you honestly which service fits your business — and whether we're the right team for it. No pitch, no pressure.</p>
+    </div>
+    <div class="cta-right fade d2">
+      <a href="#" class="cta-main-btn">
+        Book a Free Discovery Call
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <span class="cta-note">30 minutes · Free · No commitment</span>
+      <div class="cta-two-paths">
+        <a href="hubspot.html" class="cta-path-link">HubSpot Services <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span style="color:var(--stone-2);font-size:12px">or</span>
+        <a href="ecommerce.html" class="cta-path-link">Ecommerce & Design <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo"><span class="w">W</span>eave Media</div>
+        <p>HubSpot Consulting & Ecommerce Marketing. Operating across Australia, the United States, and the Philippines.</p>
+      </div>
+      <div class="footer-col">
+        <h5>HubSpot</h5>
+        <ul>
+          <li><a href="hubspot.html">Onboarding & Setup</a></li>
+          <li><a href="hubspot.html#fixups">Audit & Fix-Up</a></li>
+          <li><a href="hubspot.html#crm">CRM Configuration</a></li>
+          <li><a href="hubspot.html#training">Team Training</a></li>
+          <li><a href="hubspot.html#retainer">Monthly Retainer</a></li>
+          <li><a href="hubspot.html#websites">HubSpot Websites</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Ecommerce</h5>
+        <ul>
+          <li><a href="ecommerce.html">Email & Automation</a></li>
+          <li><a href="ecommerce.html">Meta & Google Ads</a></li>
+          <li><a href="ecommerce.html">Product Video</a></li>
+          <li><a href="ecommerce.html">Social Media</a></li>
+          <li><a href="ecommerce.html">Brand Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#cta">Book a Call</a></li>
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Weave Media. All rights reserved. · All prices in USD.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
