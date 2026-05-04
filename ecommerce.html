@@ -227,7 +227,6 @@ footer { background: var(--surface); padding: 64px 40px 36px; border-top: 1px so
 
 /* BURGER & MOBILE MENU */
 .burger {
-  display: none;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
@@ -241,7 +240,7 @@ footer { background: var(--surface); padding: 64px 40px 36px; border-top: 1px so
   display: block;
   width: 22px;
   height: 2px;
-  background: var(--text);
+  background: #111827;
   border-radius: 2px;
   transition: transform .25s, opacity .25s;
 }
@@ -288,6 +287,8 @@ footer { background: var(--surface); padding: 64px 40px 36px; border-top: 1px so
   text-align: center;
 }
 .mobile-cta:hover { opacity: .85; color: #fff !important; }
+@media (min-width: 961px) { .burger { display: none; } .mobile-menu { display: none !important; } }
+
 
 </style>
 </head>
