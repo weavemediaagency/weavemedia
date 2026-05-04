@@ -209,7 +209,9 @@ footer { background: var(--surface); padding: 64px 40px 36px; border-top: 1px so
 /* RESPONSIVE */
 @media (max-width: 960px) {
   nav { padding: 0 20px; }
-  .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+  .nav-links { display: none; }
+  .burger { display: flex; }
+  .mobile-menu { display: block; }
   .hero { padding: 64px 20px; }
   .intro-band { padding: 24px 20px; }
   .intro-band-inner { flex-direction: column; gap: 24px; }
@@ -244,6 +246,71 @@ footer { background: var(--surface); padding: 64px 40px 36px; border-top: 1px so
   .numbers-inner { grid-template-columns: 1fr 1fr; }
   .intro-band-stats { gap: 24px; }
 }
+
+/* BURGER & MOBILE MENU */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 101;
+}
+.burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform .25s, opacity .25s;
+}
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 99;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .32s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 6px 20px rgba(0,0,0,.07);
+}
+.mobile-menu.open { max-height: 400px; }
+.mobile-menu ul { list-style: none; display: flex; flex-direction: column; padding: 8px 20px 24px; }
+.mobile-menu a {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color .15s;
+}
+.mobile-menu a:hover { color: var(--accent); }
+.mobile-menu li:last-child a { border-bottom: none; }
+.mobile-cta {
+  margin-top: 10px;
+  display: inline-block !important;
+  background: var(--text);
+  color: #fff !important;
+  border-radius: 8px;
+  padding: 12px 20px !important;
+  font-weight: 600 !important;
+  border-bottom: none !important;
+  text-align: center;
+}
+.mobile-cta:hover { opacity: .85; color: #fff !important; }
+
 </style>
 </head>
 <body>
@@ -258,7 +325,18 @@ footer { background: var(--surface); padding: 64px 40px 36px; border-top: 1px so
     <li><a href="about.html">About Us</a></li>
     <li><a href="https://calendly.com/annadominique/30min?month=2026-05" target="_blank" rel="noopener" class="nav-cta">Book a Free Call</a></li>
   </ul>
+  <button class="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="hubspot.html">HubSpot Services</a></li>
+    <li><a href="ecommerce.html">Marketing &amp; Design</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="https://calendly.com/annadominique/30min?month=2026-05" target="_blank" rel="noopener" class="mobile-cta">Book a Free Call</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -561,6 +639,27 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+// Burger menu
+const _burger = document.querySelector('.burger');
+const _mobileMenu = document.getElementById('mobile-menu');
+if (_burger && _mobileMenu) {
+  _burger.addEventListener('click', () => {
+    const isOpen = _burger.classList.toggle('open');
+    _mobileMenu.classList.toggle('open');
+    _burger.setAttribute('aria-expanded', String(isOpen));
+    _burger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+  _mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      _burger.classList.remove('open');
+      _mobileMenu.classList.remove('open');
+      _burger.setAttribute('aria-expanded', 'false');
+      _burger.setAttribute('aria-label', 'Open menu');
+    });
+  });
+}
+
 </script>
 </body>
 </html>
